@@ -75,7 +75,7 @@ background-color:transparent;
 
 .footer__copyright,
 [data-theme='dark'] .hero__subtitle {
-  font-size: 0.8rem;
+  font-size: 0.6rem;
 }
 
 [data-theme='dark'] .hero__subtitle {

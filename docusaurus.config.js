@@ -152,7 +152,7 @@ const config = {
             ],
           },
         */],
-        copyright: `copyright © ${new Date().getFullYear()} <a href="#">quant open source project / Thorsten Suckow-Homberg</a>. Except where otherwise noted, the content on this page is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>`,
+        copyright: `copyright © ${new Date().getFullYear()} <a href="#">quant open source project</a> / <a href="https://thorsten.suckow-homberg.de">Thorsten Suckow-Homberg</a>.`,
       },
       prism: {
         theme: lightCodeTheme,
