@@ -1,7 +1,7 @@
 /**
- * conjoon
- * conjoon.github.io
- * Copyright (C) 2022 Thorsten Suckow-Homberg https://github.com/conjoon/conjoon.github.io
+ * quant
+ * quant.github.io
+ * Copyright (C) 2023 Thorsten Suckow-Homberg https://github.com/quant-php/quant.github.io
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -36,7 +36,8 @@ const sidebars = {
             collapsed: false,
             link: {type: "doc", id: "packages/overview"},
             items: [
-                "packages/quant/quant_core"
+                "packages/quant/quant_core",
+                "packages/quant/quant_phpstan"
             ]
         }
         /**

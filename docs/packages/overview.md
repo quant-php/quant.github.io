@@ -1,7 +1,7 @@
 ---
 id: overview
 title: Packages
-slug: /api/packages
+slug: /packages
 ---
 
 # quant Packages
@@ -11,3 +11,6 @@ quant provides several packages, facilitating PHP language features and extendin
 
 # quant/core
 - [quant/core](packages/quant/core) 
+
+# quant/phpstan
+- [quant/phpstan](packages/quant/phpstan) 

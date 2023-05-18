@@ -1,7 +1,7 @@
 ---
 id: quant_core
 title: Core
-slug: /api/packages/quant/core
+slug: /packages/quant/core
 ---
  
 # `quant/core`
@@ -19,7 +19,7 @@ other projects.
 **quant/core** comes bundled with **quant**. To install it separately, follow the [installation instructions](/docs/installation#packages).
 
 
-## 1. Automated getter/setter creation
+## 1. Getter/Setter automation
 
 :::note
 In the following, the word `Accessor` is used both for accessors and mutators, commonly referred to as `getters` and `setters`.
@@ -276,3 +276,20 @@ handling of these methods will default to the owning object, and not the `Access
 the [`applyProperties`](#setters-and-guards)-method.
 - Once the `AccessorTrait` is `used`  by a class, subclasses of the hosting class inherit the functionality of the `AccessorTrait` and
 do not need to redeclare the trait with their class-definition to use `#[Getter]` / `#[Setter]` attributes. 
+- Static Code Analyzis Support is available with [quant/phpstan](phpstan)
+
+## Benchmarks
+**quant/core** uses [phpbench](https://github.com/phpbench/phpbench) for benchmarking selected functionality of this package. The command
+
+````bash
+$ vendor/bin/phpbench run Tests/Benchmarks --report=aggregate --retry-threshold=5
+````
+
+starts the Benchmarks. Please consult the [documentation](https://phpbench.readthedocs.io/) for details on how to configure the benchmark-runner to your needs.
+
+
+## Resources
+
+* [Report issues](https://github.com/quant-php/quant/issues) and
+  [send Pull Requests](https://github.com/quant-php/quant/pulls)
+  in the [main quant repository](https://github.com/quant-php/quant)
