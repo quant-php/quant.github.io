@@ -187,6 +187,7 @@ class Target
      use AccessorTrait;
 
      public function __construct(
+          #Setter[Modifier::PRIVATE]  
           public string $value,
           private bool $state
       ) {
@@ -195,9 +196,10 @@ class Target
  }
 ```
 
-:::info
-Using `#[Getter]` / `#[Setter]` on class-level overrides any property-specific configuration.
-:::
+`#[Getter]` / `#[Setter]` on property level override class-level attribute configuration.
+
+In the example above, `setters` and `getters` for `$value` and `$state` are available, but `setValue()` is configured
+with a private access modifier.
 
 
 ### Attribute Configuration
