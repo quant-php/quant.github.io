@@ -173,35 +173,6 @@ class Target
  }
 ```
 
-### Attributes on class-level
-`#[Setter]` and `#[Getter]` can also be used on class-level:  
-
- ```php title="class-level setters and getters"
-use Quant\Core\Trait\AccessorTrait;
-use Quant\Core\Attribute\Setter;
-use Quant\Core\Attribute\Getter;
-
-#[Setter] #[Getter]
-class Target 
-{
-     use AccessorTrait;
-
-     public function __construct(
-          #Setter[Modifier::PRIVATE]  
-          public string $value,
-          private bool $state
-      ) {
-     {
-     }
- }
-```
-
-`#[Getter]` / `#[Setter]` on property level override class-level attribute configuration.
-
-In the example above, `setters` and `getters` for `$value` and `$state` are available, but `setValue()` is configured
-with a private access modifier.
-
-
 ### Attribute Configuration
 
 #### Access-level modifiers
@@ -271,6 +242,34 @@ $a = new B("value", true, false);
 $b->isState(); // BadMethodCallException
 $b->proxyIsState();// true 
 ```
+
+### Attributes on class-level
+`#[Setter]` and `#[Getter]` can also be used on class-level:
+
+ ```php title="class-level setters and getters"
+use Quant\Core\Trait\AccessorTrait;
+use Quant\Core\Attribute\Setter;
+use Quant\Core\Attribute\Getter;
+
+#[Setter] #[Getter]
+class Target 
+{
+     use AccessorTrait;
+
+     public function __construct(
+          #Setter[Modifier::PRIVATE]  
+          public string $value,
+          private bool $state
+      ) {
+     {
+     }
+ }
+```
+
+`#[Getter]` / `#[Setter]` on property level override class-level attribute configuration.
+
+In the example above, `setters` and `getters` for `$value` and `$state` are available, but `setValue()` is configured
+with a private access modifier.
 
 ### Remarks
  - If the target already contains `setters` and `getters` matching the naming conventions used by the `AccessorTrait`,
