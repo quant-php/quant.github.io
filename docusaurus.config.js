@@ -91,16 +91,16 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      /*algolia: {
-        appId: "",
-        apiKey: "",
-        indexName: "quant",
+      algolia: {
+        appId: "0RHJWE2T1N",
+        apiKey: "2ec6f343f06ad8dce22662eb551eee54",
+        indexName: "quant-php",
         contextualSearch: true,
         externalUrlRegex: 'external\\.com|domain\\.com',
 
         searchParameters: {},
         searchPagePath: 'search',
-      },*/
+      },
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       colorMode: {
