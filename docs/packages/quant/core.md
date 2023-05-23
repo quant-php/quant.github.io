@@ -294,3 +294,5 @@ starts the Benchmarks. Please consult the [documentation](https://phpbench.readt
 * [Report issues](https://github.com/quant-php/quant/issues) and
   [send Pull Requests](https://github.com/quant-php/quant/pulls)
   in the [main quant repository](https://github.com/quant-php/quant)
+
+* A writeup and closer look at the `AccessorTrait` can be found at [https://thorsten.suckow-homberg.de](https://thorsten.suckow-homberg.de/docs/articles/getter-setter-automation-with-php-attributes)
