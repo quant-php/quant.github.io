@@ -285,7 +285,7 @@ do not need to redeclare the trait with their class-definition to use `#[Getter]
 
 ### `Arrayable`
 
- - `Quant\Core\Contract\Arrayable::toArray(): array` <br /> for returning an array representation of the implementing class' instance
+ - `Quant\Core\Contract\Arrayable::toArray(): array<int, mixed>` <br /> for returning an array representation of the implementing class' instance
 
 ### `Equatable`
 
