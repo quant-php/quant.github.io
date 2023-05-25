@@ -279,6 +279,27 @@ the [`applyProperties`](#setters-and-guards)-method.
 do not need to redeclare the trait with their class-definition to use `#[Getter]` / `#[Setter]` attributes. 
 - Static Code Analyzis Support is available with [quant/phpstan](phpstan)
 
+
+## 2. Contracts
+`Quant\Core\Contract` provides the following **contracts**:
+
+### `Arrayable`
+
+ - `Quant\Core\Contract\Arrayable::toArray(): array` <br /> for returning an array representation of the implementing class' instance
+
+### `Equatable`
+
+- `Quant\Core\Contract\Quatable::equals(Equatable $obj): bool`
+
+This interface implements an equivalence relation for objects. It provides a method `equals` whose implementation must 
+conform to $(a \in Equatable) \space \thicksim \space  (b \in Equatable) :\iff a$`->`$equals(b)$, that is
+
+ - reflexive: `$a->equals($a) === true`
+ - symmetric: `$a->equals($b) === true` $\implies$ `$b->equals($a) === true`
+ - transitive: `$a->equals($b) === true` $\land$ `$b->equals($c) === true` $\implies$ `$a->equals($c) === true`
+
+
+
 ## Benchmarks
 **quant/core** uses [phpbench](https://github.com/phpbench/phpbench) for benchmarking selected functionality of this package. The command
 
