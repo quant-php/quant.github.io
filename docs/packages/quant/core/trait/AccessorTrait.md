@@ -1,7 +1,7 @@
 ---
 id: accessortrait
 title: AccessorTrait
-slug: /packages/quant/core/trait/accessorTrait
+slug: /packages/quant/core/trait/accessortrait
 ---
 
 Reference
@@ -299,7 +299,7 @@ with a private access modifier.
   the [`applyProperties`](#setters-and-guards)-method.
 - Once the `AccessorTrait` is `used`  by a class, subclasses of the hosting class inherit the functionality of the `AccessorTrait` and
   do not need to redeclare the trait with their class-definition to use `#[Getter]` / `#[Setter]` attributes.
-- Static Code Analyzis Support is available with [quant/phpstan](phpstan)
+- Static Code Analyzis Support is available with [quant/phpstan](/docs/packages/quant/phpstan)
 
 ## Performance Considerations
 
