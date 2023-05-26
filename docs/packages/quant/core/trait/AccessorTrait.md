@@ -1,25 +1,47 @@
 ---
-id: quant_core
-title: Core
-slug: /packages/quant/core
+id: accessortrait
+title: AccessorTrait
+slug: /packages/quant/core/trait/accessorTrait
 ---
- 
-# `quant/core`
 
-Low-level API providing contracts and base implementations for **quant**. Can easily be used as a foundation for
-other projects.
+Reference
 
-:::tip Namespace
-`Quant\Core`
-:::
+## Definition
+Namespace: `Quant\Core\Trait`
 
+`AccessorTrait` provides accessor automation for object properties attributed with `#[Setter]` and/or `#[Getter]`.
 
-## Installation
+```php
+trait AccessorTrait
+```
 
-**quant/core** comes bundled with **quant**. To install it separately, follow the [installation instructions](/docs/installation#packages).
+## Example
 
+```php 
+use Quant\Core\Trait\AccessorTrait;
+use Quant\Core\Attribute\Setter;
+use Quant\Core\Attribute\Getter;
 
-## 1. Getter/Setter automation
+class Employee {
+
+    use AccessorTrait;
+
+    #[Setter] #[Getter]
+    private string $name = "John Smith";
+
+    public function __construct(
+        #[Getter]
+        private string $empId
+    ) {
+    }
+}
+
+$employee = new Employee("87i-dsd-89z-978");
+$employe->getEmpId(); // returns "87i-dsd-89z-978"
+$employe->setName("Thomas Anderson")->getName(); // returns "Thomas Anderson"
+```
+
+## Getter/Setter automation
 
 :::note
 In the following, the word `Accessor` is used both for accessors and mutators, commonly referred to as `getters` and `setters`.
@@ -72,8 +94,8 @@ $target->getValue(); // "default"
 $target->isValid(); // true
 ```
 
-#### Setters and Guards 
-The return value of a `set`-method provided with `AccessorTrait` will always be the owning instance. 
+#### Setters and Guards
+The return value of a `set`-method provided with `AccessorTrait` will always be the owning instance.
 
 To use invariants with `setters`, each `setter` has an `apply`-method that guards the property. If implemented, its return value
 will be used as the new value for the property. This allows for applying validation and coercion logic without accidentally
@@ -101,7 +123,7 @@ $target->setValue("new value")->setValue("")->getValue(); // "new value"
 
 #### Using the guards with `__construct`
 If an object requires the guards to be used with [constructor arguments](#constructor-property-promotion), the method `AccessorTrait::applyProperties()`
-can be used: 
+can be used:
 
 ```php title="Calling guards with the constructor"
 use Quant\Core\Trait\AccessorTrait;
@@ -128,18 +150,18 @@ class Target
 ```
 
 `AccessorTrait::applyProperties(array $args)` configures the properties of **this** class with the values available in `$args`.
- The ordinal value of the individual entries in `$args` is expected to match the ordinal value of the parameter
- that is to be configured with the value, so it treats the arguments positionally: To use an argument 
+The ordinal value of the individual entries in `$args` is expected to match the ordinal value of the parameter
+that is to be configured with the value, so it treats the arguments positionally: To use an argument
 for `$b` with the following constructor
 
- `__construct($a = null, $b = null)`
+`__construct($a = null, $b = null)`
 
- an array in the form of
+an array in the form of
 
- `$args = [1 => "value_of_b"]`
+`$args = [1 => "value_of_b"]`
 
- must be passed to `applyProperties` 
- 
+must be passed to `applyProperties`
+
 :::tip
 Argument inspection can be leveraged to the `AccessorTrait` by applying `applyProperties()` to the return value
 of `func_get_args()`:
@@ -189,7 +211,7 @@ class A
     // ...
 ```
 
-The visibility of the methods provided by the `AccessorTrait` correspond to the particular modifier. The default 
+The visibility of the methods provided by the `AccessorTrait` correspond to the particular modifier. The default
 modifier, if none is provided, is `Quant\Core\Lang\Modifier\Modifier::PUBLIC`.
 
 ##### Available modifier
@@ -271,49 +293,26 @@ class Target
 In the example above, `setters` and `getters` for `$value` and `$state` are available, but `setValue()` is configured
 with a private access modifier.
 
-### Remarks
- - If the target already contains `setters` and `getters` matching the naming conventions used by the `AccessorTrait`,
-handling of these methods will default to the owning object, and not the `AccessorTrait`. This also applies to
-the [`applyProperties`](#setters-and-guards)-method.
+## Remarks
+- If the target already contains `setters` and `getters` matching the naming conventions used by the `AccessorTrait`,
+  handling of these methods will default to the owning object, and not the `AccessorTrait`. This also applies to
+  the [`applyProperties`](#setters-and-guards)-method.
 - Once the `AccessorTrait` is `used`  by a class, subclasses of the hosting class inherit the functionality of the `AccessorTrait` and
-do not need to redeclare the trait with their class-definition to use `#[Getter]` / `#[Setter]` attributes. 
+  do not need to redeclare the trait with their class-definition to use `#[Getter]` / `#[Setter]` attributes.
 - Static Code Analyzis Support is available with [quant/phpstan](phpstan)
 
+## Performance Considerations
 
-## 2. Contracts
-`Quant\Core\Contract` provides the following **contracts**:
+The implementation requires logic and information to be evaluated at runtime, since getters / setters are only virtually existing, not physically: This affects performance to a certain degree.
 
-### `Arrayable`
+In tests, the following functionality of the `AccessorTrait` proved to have an impact on runtime performance:
 
- - `Quant\Core\Contract\Arrayable::toArray(): array<int, mixed>` <br /> for returning an array representation of the implementing class' instance
+1. Using the Reflection API to query properties and classes for properties.
+2. Deciding whether an callee's accessor is accessible based on the modifier-configuration of the attribute.
+3. Scoping function calls from the class that hosts the trait to the classes that declare the property. E.g., if the property is declared private, the owning class must be determined and used as the scope when setting the property.
 
-### `Equatable`
-
-- `Quant\Core\Contract\Quatable::equals(Equatable $obj): bool`
-
-This interface implements an equivalence relation for objects. It provides a method `equals` whose implementation must 
-conform to $(a \in Equatable) \space \thicksim \space  (b \in Equatable) :\iff a$`->`$equals(b)$, that is
-
- - reflexive: `$a->equals($a) === true`
- - symmetric: `$a->equals($b) === true` $\implies$ `$b->equals($a) === true`
- - transitive: `$a->equals($b) === true` $\land$ `$b->equals($c) === true` $\implies$ `$a->equals($c) === true`
-
-
-
-## Benchmarks
-**quant/core** uses [phpbench](https://github.com/phpbench/phpbench) for benchmarking selected functionality of this package. The command
-
-````bash
-$ vendor/bin/phpbench run Tests/Benchmarks --report=aggregate --retry-threshold=5
-````
-
-starts the Benchmarks. Please consult the [documentation](https://phpbench.readthedocs.io/) for details on how to configure the benchmark-runner to your needs.
-
+For futher details and benachmarks refer to [this article](https://thorsten.suckow-homberg.de/docs/articles/getter-setter-automation-with-php-attributes/#5-performance-considerations).
 
 ## Resources
-
-* [Report issues](https://github.com/quant-php/quant/issues) and
-  [send Pull Requests](https://github.com/quant-php/quant/pulls)
-  in the [main quant repository](https://github.com/quant-php/quant)
 
 * A writeup and closer look at the `AccessorTrait` can be found at [https://thorsten.suckow-homberg.de](https://thorsten.suckow-homberg.de/docs/articles/getter-setter-automation-with-php-attributes)
