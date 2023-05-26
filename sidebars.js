@@ -33,10 +33,27 @@ const sidebars = {
         {
             type: "category",
             label: "Packages",
-            collapsed: false,
             link: {type: "doc", id: "packages/overview"},
             items: [
-                "packages/quant/quant_core",
+                {
+                    type: 'category',
+                    label: 'Core',
+                    link: {type: 'doc', id: "packages/quant/core/quant_core"},
+                    items: [{
+                        type: 'category',
+                        label: 'Contract',
+                       items: [
+                            "packages/quant/core/contract/arrayable",
+                             "packages/quant/core/contract/equatable"
+                        ]
+                    }, {
+                        type: 'category',
+                        label: 'Trait',
+                        items: [
+                            "packages/quant/core/trait/accessortrait"
+                        ]
+                    }]
+                },
                 "packages/quant/quant_phpstan"
             ]
         }
