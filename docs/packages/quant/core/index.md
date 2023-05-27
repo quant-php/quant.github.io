@@ -14,11 +14,11 @@ Low-level API providing contracts, base classes and commonly-used functionality.
 
 ## Available Documentation
 
-| Name                                 | Description                                                                                        |
-|--------------------------------------|----------------------------------------------------------------------------------------------------|
-| [AccessorTrait](trait/accessortrait) | Provides accessor automation for object properties attributed with `#[Setter]` and/or `#[Getter]`. |
-| [Arrayable](contract/arrayable)      | Indicates the availability of an array-representative for the implementing class' instance.        |
-| [Equatable](contract/equatable)      | Implements an equivalence relation for objects                                                     |
+| Name                                                           | Description                                                                                        |
+|----------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
+| [AccessorTrait](/docs/packages/quant/core/trait/accessortrait) | Provides accessor automation for object properties attributed with `#[Setter]` and/or `#[Getter]`. |
+| [Arrayable](/docs/packages/quant/core/contract/arrayable)      | Indicates the availability of an array-representative for the implementing class' instance.        |
+| [Equatable](/docs/packages/quant/core/contract/equatable)      | Implements an equivalence relation for objects                                                     |
 
 
 ## Benchmarks
