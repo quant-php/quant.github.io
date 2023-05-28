@@ -21,6 +21,8 @@ interface Equatable
 #[Getter]
 class Point implements Equatable {
 
+    use AccessorTrait;
+    
     public function __construct(
         private float $x,
         private float $y
@@ -38,8 +40,8 @@ class Point implements Equatable {
 
 ## Remarks
 
-This interface implements an equivalence relation for objects. It provides a method `equals` whose implementation must
-conform to $(a \in Equatable) \space \thicksim \space  (b \in Equatable) :\iff a$`->`$equals(b)$, that is
+This interface implements an equivalence relation for objects of `T`, with `T` being a subtype of `Comparable`. 
+It provides a method `equals` whose implementation must, for all $a, b, c \in T$, conform to $(a \in T) \space \thicksim \space  (b \in T) :\iff a$`->`$equals(b)$, that is
 
 - reflexive: `$a->equals($a) === true`
 - symmetric: `$a->equals($b) === true` $\implies$ `$b->equals($a) === true`
