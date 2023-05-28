@@ -39,11 +39,13 @@ const sidebars = {
                     type: 'category',
                     label: 'Core',
                     link: {type: 'doc', id: "packages/quant/core/quant_core"},
-                    items: [{
+                    items: [
+                        {
                         type: 'category',
                         label: 'Contract',
-                       items: [
-                            "packages/quant/core/contract/arrayable",
+                        items: [
+                             "packages/quant/core/contract/arrayable",
+                             "packages/quant/core/contract/comparable",
                              "packages/quant/core/contract/equatable"
                         ]
                     }, {

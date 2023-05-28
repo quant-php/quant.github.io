@@ -21,6 +21,8 @@ interface Comparable
 #[Getter]
 class Money implements Comparable {
 
+    use AccessorTrait;
+    
     public function __construct(
         private int $amount,
         private int $cents
@@ -51,7 +53,7 @@ class Money implements Comparable {
 
 ## Remarks
 
-This interface implements a total order on `<T>` for objects of `<T>`, with `<T>` being a subtype of `Comparable`. It provides a method `compareTo` whose implementation must, for all $a, b \in T$, conform to 
+This interface implements a total order on `T` for objects of `T`, with `T` being a subtype of `Comparable`. It provides a method `compareTo` whose implementation must, for all $a, b \in T$, conform to 
  - $(a \in T) \space \lt \space  (b \in T) :\iff a$`->`$compareTo(b) = -1$ 
  - $(a \in T) \space = \space  (b \in T) :\iff a$`->`$compareTo(b) = 0$ 
  - $(a \in T) \space \gt \space  (b \in T) :\iff a$`->`$compareTo(b) = 1$
