@@ -149,7 +149,7 @@ abstract public function getType(): string
 
 
 ### map
-Applies the function to this data and returns **this** list.
+Applies the callable to the items of **this** list.
 
 #### Parameters
  - `callable $mapFn`<br />A function that takes an instance of `T` as the argument and returns the same instance of `T`
