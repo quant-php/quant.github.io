@@ -16,6 +16,7 @@ Low-level API providing contracts, base classes and commonly-used functionality.
 
 | Name                                                           | Description                                                                                        |
 |----------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
+| [AbstractList](/docs/packages/quant/core/abstractlist)         | A strongly typed list maintaining objects by a numeric index.                                      |
 | [AccessorTrait](/docs/packages/quant/core/trait/accessortrait) | Provides accessor automation for object properties attributed with `#[Setter]` and/or `#[Getter]`. |
 | [Arrayable](/docs/packages/quant/core/contract/arrayable)      | Indicates the availability of an array-representative for the implementing class' instance.        |
 | [Comparable](/docs/packages/quant/core/contract/comparable)    | Implements a total order on objects of `T : Comparable`.                                           |
