@@ -40,6 +40,7 @@ const sidebars = {
                     label: 'Core',
                     link: {type: 'doc', id: "packages/quant/core/quant_core"},
                     items: [
+                        "packages/quant/core/abstractlist",
                         {
                         type: 'category',
                         label: 'Contract',
